@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Webpage Title -->
+    <title>ONE PUNCH GO</title>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+  </head>
+  <style>
+      /* 강제 버튼 크기 UP*/
+      input[type=checkbox] {
+          /* Double-sized Checkboxes */
+          -ms-transform: scale(2); /* IE */
+          -moz-transform: scale(2); /* FF */
+          -webkit-transform: scale(2); /* Safari and Chrome */
+          -o-transform: scale(2); /* Opera */
+          margin-right: 50px;
+          margin-bottom: 20px;
+          margin-top: 10px;
+      }
+
+      /*제품정보 */
+      .product_korea_name {
+          margin-top: 20px;
+      }
+
+      .korea_price {
+          margin-top: 20px;
+      }
+
+      .korea_stock {
+          margin-top: 20px;
+      }
+
+      .product_size {
+          margin-top: 20px;
+      }
+
+      .product_all_weight {
+          margin-top: 20px;
+      }
+
+      /* ------------------제품정보------------- 끝 */
+
+      /* 사진 클로링 */
+      .product_img {
+          margin: auto;
+          display: table;
+          width: 400px;
+      }
+
+      /* 사진추가 제거 버튼 */
+      .image_buttons {
+          margin: auto;
+          display: table;
+          width: 400px;
+      }
+
+      /* 상세페이지 꾸미기*/
+      .detail-form {
+          text-align: center;
+      }
+
+      .english-product-name {
+
+          width: 1000px;
+          height: 20px;
+      }
+
+      .detail-scroll {
+          width: 1000px;
+          height: 500px;
+
+      }
+
+      /* 상세페이지 주석 종료 */
+
+      .county-button {
+          text-align: center;
+      }
+  </style>
+
+
+  <body>
+    <H1 style="text-align:center;">ONE PUNCH GO</H1>
+
+    <p></p>
+
+    오늘의 환율 데이터
+    싱가폴
+    body > div > table > tbody > tr:nth-child(28) > td:nth-child(6)
+    말레이시아
+    body > div > table > tbody > tr:nth-child(28) > td:nth-child(6)
+    인도네시아
+    body > div > table > tbody > tr:nth-child(29) > td:nth-child(6)
+    태국
+
+
+    <h3 style="text-align:left;">상품을 가져올 URL을 입력해주세요</h3>
+
+    <h5 style="text-align:right;">옵션 1개 만을 강제로 크롤링 할경우 이 버튼을 눌러주세요</h5>
+    <!--------------------------강제등록 체크 박스--------------------->
+    <div style="float:right;" class="check_foce_croll">
+      <input type="checkbox" aria-label="...">
+    </div>
+    <!-----------------------크롤링URL 박스------------------------------>
+    <div class="input-group">
+      <input type="URL" class="form-control" placeholder="URL입력" aria-describedby="sizing-addon3">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div>
+
+    <!--크롤링 된 한국어 제품명-->
+    <div class="product_korea_name">
+      <input type="text" class="form-control" placeholder="상품명" aria-describedby="sizing-addon3">
+    </div>
+    <!--크롤링 된 제품가격+배송비 -->
+    <div class="korea_price">
+      <input type="text" class="form-control" placeholder="가격+배송비" size="10">
+    </div>
+    <!--재고량-->
+    <div class="korea_stock">
+      <input type="text" class="form-control" placeholder="재고" size="10">
+    </div>
+    <!--제품크기 가로 세로 높이 mm-->
+    <div class="product_size">
+      제품 크기(mm)
+      <input type="text" class="product-width" placeholder="가로" aria-describedby="sizing-addon3">
+      <input type="text" class="product-depth" placeholder="세로" aria-describedby="sizing-addon3">
+      <input type="text" class="product-height" placeholder="높이" aria-describedby="sizing-addon3">
+    </div>
+
+    <!--제품 무게에 따른 제품 배송비 자동 계산-->
+    <div class="product_all_weight">
+      제품무게(g)
+      <input type="text" class="product-weight" placeholder="제품무게" size="10">
+      박스무게
+      <input type="text" class="box-weight" placeholder="박스무게" size="10">
+      <!--박스 크기에 선택(무게 자동추가)-->
+      <button class="box-weight-group" type="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+        <span class="caret">박스무게 설정</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="#">1호</a></li>
+        <li><a href="#">2호</a></li>
+        <li><a href="#">3호</a></li>
+        <li><a href="#">4호</a></li>
+        <li><a href="#">5호</a></li>
+      </ul>
+
+      <!-----------------전체 무게 합계--------------->
+      전체무게(g)
+      <input type="text" class="total-weight" placeholder="전체무게" aria-describedby="sizing-addon3">
+    </div>
+
+    <!-------------------------크롤링 URL 사진 + 사진 추가/ 삭제 ------------------------->
+
+    <h4 style="text-align:center" ;>크롤링 이미지</h4>
+
+    <div class=" product_img">
+      메인<img src="..." class="Main" alt="...">
+      1<img src="..." class="image_1" alt="...">
+      2<img src="..." class="image_2" alt="...">
+      3<img src="..." class="image_3" alt="...">
+      4<img src="..." class="image_4" alt="...">
+      5<img src="..." class="image_5" alt="...">
+      6<img src="..." class="image_6" alt="...">
+    </div>
+
+    <!-- 뭔지 모르겠음
+    <picture>
+  <source srcset="..." type="image/svg+xml">
+  <img src="..." class="img-fluid img-thumbnail" alt="...">
+</picture>
+-->
+    <div class="image_buttons">
+      <p>
+        <button type="button" class="image_add">사진변경</button>
+        <button type="button" class="image_delete">사진삭제</button>
+      </p>
+    </div>
+
+    <!-------------------------크롤링 옵션 추가/삭제 테이블-------------------------------->
+
+    <h5>상품 옵션</h5>
+
+    <table class="table table-sm">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="product-option" style="text-align:center;">
+      <p>
+        <button type="button" class="option-change">옵션변경</button>
+      </p>
+    </div>
+    <!--------------------------------상품 상페이지 영역 끝-------------------------------------------------------->
+
+
+    <!--크롤링 상품명 + 상세 영문 자동 변환 및 추가 입력 box -->
+    <div class="detail-form">
+      <form action="writerAction" name="detail-box" method="post">
+        <input type="hidden" name="bdGroup" value=<%=bdGroup%>>
+        <input type="hidden" name="bdOrder" value=<%=bdOrder%>>
+        <input type="hidden" name="bdIndent" value=<%=bdIndent%>>
+        <input type="text" name="bdTitle" class="english-product-name" placeholder="영문 번역 상품제목 또는 글쓰기." required>
+
+
+        <div class="detail-english">
+          <textarea class="detail-scroll" rows="10" name="bdContent" placeholder="상세페이지 내용 영문 번역" required></textarea>
+        </div>
+      </form>
+    </div>
+
+
+    <!----------------------------------------------나라별 설정 영역------------------------------------------------------>
+    <p></p>
+    <div class="county-button">
+      <button type="button" class="btn btn-sg">싱가폴</button>
+      <button type="button" class="btn btn-my">말레이시아</button>
+      <button type="button" class="btn btn-id">인도네시아</button>
+      <button type="button" class="btn btn-th">태국</button>
+    </div>
+    <p></p>
+    <!----------------------------------------------싱가폴 나라별 설정 영역------------------------------------------------------>
+    <div class="Choose-category" style="text-align:center;">
+      <select id="main-category" onchange="categoryChange(this)">
+        <option>메인카테고리 선택</option>
+        <option value="a">크롤링 예상</option>
+        <option value="b">1</option>
+        <option value="c">2</option>
+      </select>
+
+      <select id="sub1">
+        <option>서브카테고리 선택</option>
+        <option value="a">크롤링 예상</option>
+        <option value="b">1</option>
+        <option value="c">2</option>
+      </select>
+
+      <select id="sub3">
+        <option>서브카테고리 선택</option>
+        <option value="a">크롤링 예상</option>
+        <option value="b">1</option>
+        <option value="c">2</option>
+      </select>
+
+      <select id="sub4">
+        <option>서브카테고리 선택</option>
+        <option value="a">크롤링 예상</option>
+        <option value="b">1</option>
+        <option value="c">2</option>
+      </select>
+
+      <!-- 카테고리 설정 끝-->
+
+      <select id="product-brand">
+        <option>브랜드종류 크롤링</option>
+        <option value="a">nobrand</option>
+        <option value="b">1</option>
+        <option value="c">2</option>
+      </select>
+    </div>
+
+    <p></p>
+    <!--자바스크립트
+    function categoryChange(e) {
+    var good_a = ["지수", "제니", "로제", "리사"];
+    var good_b = ["빅토리아", "엠버", "루나", "크리스탈"];
+    var good_c = ["LE", "하니", "정화", "혜린", "솔지"];
+    var target = document.getElementById("good");
+
+    if(e.value == "a") var d = good_a;
+    else if(e.value == "b") var d = good_b;
+    else if(e.value == "c") var d = good_c;
+
+    target.options.length = 0;
+
+    for (x in d) {
+    var opt = document.createElement("option");
+    opt.value = d[x];
+    opt.innerHTML = d[x];
+    target.appendChild(opt);
+    }
+    }
+-->
+
+    <!-------------- 가격설정 ---------------->
+    <p></p>
+    <div class="calculate-product" style="text-align:center;">
+      상품가격(SG)
+      <input type="text" name="origin-price" size="10">
+      마진 자동환산(SG)
+      <input type="text" name="margin-exchange" size="10">
+      내 마진 입력
+      <input type="text" name="my_margin" size="10">
+      배송비 (SG)
+      <input type="text" name="delivery-fee-sg" size="10">
+      PG수수료
+      <input type="text" name="pg-charge" size="10">
+      플랫폼 수수료
+      <input type="radio" name="shopee-charge" value="기본" checked>기본
+      <input type="radio" name="shopee-charge" value="3.18%" checked>FSP
+      <input type="radio" name="shopee-charge" value="5.3%" checked>FSP+10%
+
+      <p></p>
+      배송비지원
+      <input type="text" name="event-support" size="5" value="1.99">
+      합산가격(SG)
+      <input type="text" name="total_price-sg" size="10">
+      합산가격(KR)
+      <input type="text" name="total_price-kr" size="10">
+      프로모션설정
+      <select id="promotion"> //조건부로 활성화//1.프로모션이 활성화 있어야함/할인율 설정을해야지만 가능 /
+        <option>할인율</option>
+        <option value="a">no</option>
+        <option value="b">1%</option>
+        <option value="c">2</option>
+      </select>
+      최종가격(SG)
+      <input type="text" name="promotion-add-price-sg" size="20">
+      최종가격(KR)
+      <input type="text" name="promotion-add-price-kr" size="20">
+    </div>
+
+    <!----------------------------------------------말레이시아 나라별 설정 영역------------------------------------------------------>
+
+
+    <!----------------------------------------------인도네시아 나라별 설정 영역------------------------------------------------------>
+
+
+    <!----------------------------------------------태국 나라별 설정 영역------------------------------------------------------>
+    <p></p>
+    <div class="check-flatform" style="text-align:center;">
+      SG &nbsp
+      <input type="checkbox" name="SGmarcket" value="" id="SG">
+      MY &nbsp
+      <input type="checkbox" name="MYmarcket" value="" id="MY">
+      ID &nbsp
+      <input type="checkbox" name="IDmarcket" value="" id="ID">
+      TH &nbsp
+      <input type="checkbox" name="THmarcket" value="" id="TH">
+      <p>
+        <button type="button" class="all-enter">등록하기</button>
+      </p>
+    </div>
+  </body>
+</html>
