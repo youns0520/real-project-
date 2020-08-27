@@ -146,7 +146,7 @@
               for (let i = 0; i < product_option_list.length; i++) {
                   let product_option = product_option_list[i];
                   let tempHtml2 = `<tr>
-                                    <td scope="row">${i+1}</td>
+                                    <td scope="row">${i}</td>
                                     <td>${product_option['name']}</td>
                                     <td>${product_option['price']}</td>
                                   </tr>`
@@ -154,11 +154,8 @@
                   $('#product_option_list').append(tempHtml2);
                   console.log(tempHtml2)
               }
-
           }
-
       }
-
   </script>
 
   <body>
@@ -256,7 +253,7 @@
 
     <h5 style="text-align:center";>상품 옵션</h5>
 
-    <table id="product-option-set" style="text-align:center" ;>
+    <table id="product-option-set" style="text-align:center">
       <thead>
       <tr>
         <th scope="col">옵션</th>
@@ -264,7 +261,7 @@
         <th scope="col">가격</th>
       </tr>
       </thead>
-      <tbody id="product-option_list">
+      <tbody id="product_option_list">
       <tr>
         <td scope="row">1</td>
         <td>Mark</td>
@@ -397,7 +394,7 @@
       합산가격(KR)
       <input type="text" name="total_price-kr" size="10">
       프로모션설정
-      <select id="promotion"> //조건부로 활성화//1.프로모션이 활성화 있어야함/할인율 설정을해야지만 가능 /
+      <select id="promotion"> //조건부로 활성화//1.프로모션이 활성화 있어야함/할인율 설정을해야지만 가능
         <option>할인율</option>
         <option value="a">no</option>
         <option value="b">1%</option>
